@@ -1,0 +1,61 @@
+
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="eventForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Įrašo tekstas</label>
+          <input type="text" class="form-control" 
+            formControlName="textas" 
+            #textas />
+        </div>
+        <div *ngIf="eventForm.controls['textas'].invalid && (eventForm.controls['textas'].dirty || eventForm.controls['textas'].touched)" class="alert alert-danger">
+          <div *ngIf="eventForm.controls['textas'].errors.required">
+            Įrašo tekstas privalomas.
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Pradžios data</label>
+            <input type="text" class="form-control" 
+              formControlName="startDate" 
+              #startDate
+            />
+          </div>
+        <div *ngIf="eventForm.controls['startDate'].invalid && (eventForm.controls['startDate'].dirty || eventForm.controls['startDate'].touched)" class="alert alert-danger">
+          <div *ngIf="eventForm.controls['startDate'].errors.required">
+            Pradžios data privaloma.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Pabaigos data</label>
+          <input type="text" class="form-control" 
+            formControlName="endDate" 
+            #endDate
+          />
+        </div>
+        <div *ngIf="eventForm.controls['endDate'].invalid && (eventForm.controls['endDate'].dirty || eventForm.controls['endDate'].touched)" class="alert alert-danger">
+          <div *ngIf="eventForm.controls['endDate'].errors.required">
+            Pabaigos data privaloma.
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Vietovė</label>
+            <select class="form-control" formControlName="placeId" id="exampleFormControlSelect1">
+                <option *ngFor="let place of places" value="{{place.id}}" >
+                    {{place.name}}
+                </option>
+              </select>
+          </div>
+          <div *ngIf="eventForm.controls['placeId'].invalid && (eventForm.controls['placeId'].dirty || eventForm.controls['placeId'].touched)" class="alert alert-danger">
+            <div *ngIf="eventForm.controls['endDate'].errors.required">
+              Vietovė privaloma.
+            </div>
+          </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" (click)="onSubmit()"
+          [disabled]="eventForm.pristine || eventForm.invalid">
+            Sukurti įrašą
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,24 @@
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <td>Įrašo tekstas</td>
+        <td>Pradžios data</td>
+        <td>Pabaigos data</td>
+        <td>Vietovė</td>
+        <td colspan="2">Veiksmai</td>
+    </tr>
+    </thead>
+  
+    <tbody>
+        <tr *ngFor="let event of events">
+            <td>{{ event.text}}</td>
+            <td>{{ event.startDate }}</td>
+            <td>{{ event.endDate }}</td>
+            <td>{{ event.placeId }}</td>
+            <td>
+                <button type="button" [routerLink]="['/crud/update/', event.id]">Atnaujinti</button>
+                <button type="button" (click)="delete(event.id)">Ištrinti</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
